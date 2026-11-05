@@ -68,6 +68,18 @@
         };
     };
 
+    /* ===== Combos ===== */
+
+    combos {
+        compatible = "zmk,combos";
+
+        /* Zeige- + Mittelfinger auf der Home-Row = Sym-Layer (beide Combos, ein Layer).
+         * J+K halten: links tippen.  D+F halten: rechts tippen.
+         * Positionen: 37 = D, 38 = F, 41 = J, 42 = K
+         */
+        c_sym_r { timeout-ms = <20>; key-positions = <41 42>; bindings = <&mo LAYER_Sym>; layers = <LAYER_Base>; slow-release; };
+        c_sym_l { timeout-ms = <20>; key-positions = <37 38>; bindings = <&mo LAYER_Sym>; layers = <LAYER_Base>; slow-release; };
+    };
 
     /* ===== Macros ===== */
 
