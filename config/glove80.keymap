@@ -1,0 +1,200 @@
+/*
+ * Glove80 - Testphase mit ZMK Studio (normales ZMK, nicht MoErgo)
+ *
+ * Unterschiede zur MoErgo-Version:
+ *  - Magic-Taste ohne LED-Statusanzeige (RGB_STATUS gibt es nur bei MoErgo)
+ *  - Magic + U entsperrt die Tastatur fuer ZMK Studio
+ *  - zwei Reserve-Layer, die erst in Studio aktiviert und belegt werden
+ * Copyright (c) 2020 The ZMK Contributors
+ * Copyright (c) 2025 Innaworks Development Limited, trading as MoErgo
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/rgb.h>
+
+
+/* ===== Layer ===== */
+
+#define LAYER_Base    0
+#define LAYER_Magic   1
+/* Layer 2 und 3: Reserve fuer ZMK Studio */
+
+
+
+/ {
+
+    /* ===== Behaviors ===== */
+
+    behaviors {
+
+        /* Bluetooth-Profile: einmal tippen = auswaehlen, zweimal tippen = Verbindung trennen */
+        bt_0: bt_0 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&bt_select_0>, <&bt BT_DISC 0>;
+        };
+        bt_1: bt_1 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&bt_select_1>, <&bt BT_DISC 1>;
+        };
+        bt_2: bt_2 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&bt_select_2>, <&bt BT_DISC 2>;
+        };
+        bt_3: bt_3 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&bt_select_3>, <&bt BT_DISC 3>;
+        };
+    };
+
+
+    /* ===== Macros ===== */
+
+    macros {
+
+        /* Ausgabe auf Bluetooth stellen (sonst gewinnt USB, wenn ein Kabel steckt)
+         * und dann das Profil auswaehlen
+         */
+        bt_select_0: bt_select_0 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE>, <&bt BT_SEL 0>;
+        };
+        bt_select_1: bt_select_1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE>, <&bt BT_SEL 1>;
+        };
+        bt_select_2: bt_select_2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE>, <&bt BT_SEL 2>;
+        };
+        bt_select_3: bt_select_3 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE>, <&bt BT_SEL 3>;
+        };
+    };
+
+
+    /* ===== Keymap =====
+     * Pro Reihe: erst linke Hand, dann rechte Hand.
+     * Reihe 5 und 6 enthalten zusaetzlich die Daumentasten (je 3 links, 3 rechts).
+     * Die Reihenfolge der Layer muss zu den LAYER_*-Nummern oben passen.
+     */
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        /* ----- 0: Base ----- */
+        layer_Base {
+            display-name = "Base";
+            bindings = <
+                // Reihe 1
+                /* links     */ &none &none &none &none &none 
+                /* rechts    */ &none &none &none &none &none 
+
+                // Reihe 2
+                /* links     */ &none &none &none &none &none &none 
+                /* rechts    */ &none &none &none &none &none &none
+
+                // Reihe 3
+                /* links     */ &kp TAB     &kp Q       &kp W       &kp E       &kp R       &kp T
+                /* rechts    */ &kp Y       &kp U       &kp I       &kp O       &kp P       &kp MINUS
+
+                // Reihe 4
+                /* links     */ &mt LCTRL ESC     &kp A       &kp S       &kp D       &kp F       &kp G
+                /* rechts    */ &kp H             &kp J       &kp K       &kp L       &kp SEMI    &kp SQT
+
+                // Reihe 5 + obere Daumentasten
+                /* links     */ &kp LSHIFT   &kp Z      &kp X       &kp C       &kp V       &kp B
+                /* Daumen L  */ &none   &none    &none
+                /* Daumen R  */ &none   &none    &none 
+                /* rechts    */ &kp N        &kp M      &kp COMMA   &kp DOT     &kp FSLH    &kp RSHFT
+
+                // Reihe 6 + untere Daumentasten
+                /* links     */ &mo LAYER_Magic         &none  &none  &none  &none  
+                /* Daumen L  */ &kp LGUI        &kp LALT    &kp DEL 
+                /* Daumen R  */ &kp BACKSPACE   &kp RET    &kp SPACE 
+                /* rechts    */ &none                   &none  &none  &none  &none
+            >;
+        };
+
+        /* ----- 1: Magic (Bluetooth, RGB, Bootloader) ----- */
+        layer_Magic {
+            display-name = "Magic";
+            bindings = <
+                // Reihe 1
+                /* links     */ &bt BT_CLR       &none            &none            &none            &none
+                /* rechts    */ &none            &none            &none            &none            &bt BT_CLR_ALL
+
+                // Reihe 2
+                /* links     */ &none            &none            &none            &none            &none            &none
+                /* rechts    */ &none            &none            &none            &none            &none            &none
+
+                // Reihe 3
+                /* links     */ &none            &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG
+                /* rechts    */ &none            &studio_unlock   &none            &none            &none            &none
+                //                               Magic + U = ZMK Studio entsperren
+
+                // Reihe 4
+                /* links     */ &bootloader      &rgb_ug RGB_SPD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF
+                /* rechts    */ &none            &none            &none            &none            &none            &bootloader
+
+                // Reihe 5 + obere Daumentasten
+                /* links     */ &sys_reset       &none            &none            &none            &none            &none
+                /* Daumen L  */ &bt_2            &bt_3            &none
+                /* Daumen R  */ &none            &none            &none
+                /* rechts    */ &none            &none            &none            &none            &none            &sys_reset
+
+                // Reihe 6 + untere Daumentasten
+                /* links     */ &none            &none            &none            &none            &none
+                /* Daumen L  */ &bt_0            &bt_1            &out OUT_USB
+                /* Daumen R  */ &none            &none            &none
+                /* rechts    */ &none            &none            &none            &none            &none
+            >;
+        };
+
+            /* ----- 2 und 3: Reserve-Layer fuer ZMK Studio -----
+         * In normalen Builds ignoriert. In Studio aktivieren, umbenennen und belegen.
+         */
+        layer_Extra1 {
+            display-name = "Extra1";
+            status = "reserved";
+            bindings = <
+                &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans   &trans &trans &trans   &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans   &trans &trans &trans   &trans &trans &trans   &trans &trans &trans &trans &trans
+            >;
+        };
+
+        layer_Extra2 {
+            display-name = "Extra2";
+            status = "reserved";
+            bindings = <
+                &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans   &trans &trans &trans   &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans   &trans &trans &trans   &trans &trans &trans   &trans &trans &trans &trans &trans
+            >;
+        };
+
+    };
+};
