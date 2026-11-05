@@ -1,13 +1,11 @@
 /*
- * Glove80 - Testphase mit ZMK Studio (normales ZMK, nicht MoErgo)
+ * Glove80 - Version fuer normales ZMK mit ZMK Studio (nicht MoErgo)
  *
  * Unterschiede zur MoErgo-Version:
  *  - Magic-Taste ohne LED-Statusanzeige (RGB_STATUS gibt es nur bei MoErgo)
  *  - Magic + U entsperrt die Tastatur fuer ZMK Studio
+ *  - Reset und Bootloader nur noch rechts im Magic-Layer (links lagen sie direkt neben der Magic-Taste)
  *  - zwei Reserve-Layer, die erst in Studio aktiviert und belegt werden
- * Copyright (c) 2020 The ZMK Contributors
- * Copyright (c) 2025 Innaworks Development Limited, trading as MoErgo
- * SPDX-License-Identifier: MIT
  */
 
 #include <behaviors.dtsi>
@@ -20,8 +18,9 @@
 /* ===== Layer ===== */
 
 #define LAYER_Base    0
-#define LAYER_Magic   1
-/* Layer 2 und 3: Reserve fuer ZMK Studio */
+#define LAYER_Nav     1
+#define LAYER_Magic   2
+/* Layer 3 und 4: Reserve fuer ZMK Studio */
 
 
 
@@ -30,6 +29,17 @@
     /* ===== Behaviors ===== */
 
     behaviors {
+
+        /* Esc/Ctrl: tippen = Esc, halten = Ctrl.
+         * balanced: Ctrl+C geht sofort, ein schnelles "Esc, dann j" bleibt Esc + j.
+         */
+        esc_ctl: esc_ctl {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
 
         /* Bluetooth-Profile: einmal tippen = auswaehlen, zweimal tippen = Verbindung trennen */
         bt_0: bt_0 {
@@ -115,24 +125,63 @@
                 /* rechts    */ &kp Y       &kp U       &kp I       &kp O       &kp P       &kp MINUS
 
                 // Reihe 4
-                /* links     */ &mt LCTRL ESC     &kp A       &kp S       &kp D       &kp F       &kp G
-                /* rechts    */ &kp H             &kp J       &kp K       &kp L       &kp SEMI    &kp SQT
+                /* links     */ &esc_ctl LCTRL ESC     &kp A       &kp S       &kp D       &kp F       &kp G
+                /* rechts    */ &kp H                  &kp J       &kp K       &kp L       &kp SEMI    &kp RET
 
                 // Reihe 5 + obere Daumentasten
                 /* links     */ &kp LSHIFT   &kp Z      &kp X       &kp C       &kp V       &kp B
-                /* Daumen L  */ &none   &none    &none
-                /* Daumen R  */ &none   &none    &none 
+                /* Daumen L  */ &none        &none      &none
+                /* Daumen R  */ &none        &none      &none 
                 /* rechts    */ &kp N        &kp M      &kp COMMA   &kp DOT     &kp FSLH    &kp RSHFT
 
                 // Reihe 6 + untere Daumentasten
-                /* links     */ &mo LAYER_Magic         &none  &none  &none  &none  
-                /* Daumen L  */ &kp LGUI        &kp LALT    &kp DEL 
-                /* Daumen R  */ &kp BACKSPACE   &kp RET    &kp SPACE 
-                /* rechts    */ &none                   &none  &none  &none  &none
+                /* links     */ &mo LAYER_Magic         &none            &none                 &none  &none  
+                /* Daumen L  */ &kp LGUI                &kp LALT         &mo LAYER_Nav 
+                /* Daumen R  */ &none                   &kp BACKSPACE    &kp SPACE 
+                /* rechts    */ &none                   &none            &none                 &none  &none
+            >;
+        };
+        
+        
+        /* ----- 1: Nav (linken inneren Daumen halten) -----
+         * links:  Edit-Tasten fuer die Arbeit mit Maus in der rechten Hand
+         * rechts: Pfeile auf HJKL wie in Vim
+         * &trans = durchlaessig, die Taste vom Base-Layer gilt weiter
+         */
+        layer_Nav {
+            display-name = "Nav";
+            bindings = <
+                // Reihe 1
+                /* links     */ &none  &none  &none  &none  &none
+                /* rechts    */ &none  &none  &none  &none  &none
+
+                // Reihe 2
+                /* links     */ &none  &none  &none  &none  &none  &none
+                /* rechts    */ &none  &none  &none  &none  &none  &none
+
+                // Reihe 3
+                /* links     */ &none  &none  &none  &none  &none  &none 
+                /* rechts    */ &none  &none  &none  &none  &none  &none
+
+                // Reihe 4
+                /* links     */ &trans           &none           &kp SPACE     &kp BSPC          &kp RET  &none 
+                /* rechts    */ &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW   &none    &trans
+
+                // Reihe 5 + obere Daumentasten
+                /* links     */ &trans  &none  &none  &none  &none  &none
+                /* Daumen L  */ &none   &none  &none
+                /* Daumen R  */ &none   &none  &none
+                /* rechts    */ &none   &none  &none  &none  &none  &trans 
+
+                // Reihe 6 + untere Daumentasten
+                /* links     */ &trans  &none   &none  &none  &none
+                /* Daumen L  */ &trans  &trans  &none
+                /* Daumen R  */ &none   &trans  &trans
+                /* rechts    */ &none   &none   &none  &none  &none
             >;
         };
 
-        /* ----- 1: Magic (Bluetooth, RGB, Bootloader) ----- */
+        /* ----- 2: Magic (Bluetooth, RGB, Bootloader) ----- */
         layer_Magic {
             display-name = "Magic";
             bindings = <
@@ -150,11 +199,11 @@
                 //                               Magic + U = ZMK Studio entsperren
 
                 // Reihe 4
-                /* links     */ &bootloader      &rgb_ug RGB_SPD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF
+                /* links     */ &none            &rgb_ug RGB_SPD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF
                 /* rechts    */ &none            &none            &none            &none            &none            &bootloader
 
                 // Reihe 5 + obere Daumentasten
-                /* links     */ &sys_reset       &none            &none            &none            &none            &none
+                /* links     */ &none            &none            &none            &none            &none            &none
                 /* Daumen L  */ &bt_2            &bt_3            &none
                 /* Daumen R  */ &none            &none            &none
                 /* rechts    */ &none            &none            &none            &none            &none            &sys_reset
@@ -167,7 +216,7 @@
             >;
         };
 
-            /* ----- 2 und 3: Reserve-Layer fuer ZMK Studio -----
+        /* ----- 3 und 4: Reserve-Layer fuer ZMK Studio -----
          * In normalen Builds ignoriert. In Studio aktivieren, umbenennen und belegen.
          */
         layer_Extra1 {
