@@ -78,8 +78,8 @@
          * J+K halten: links tippen.  D+F halten: rechts tippen.
          * Positionen: 37 = D, 38 = F, 41 = J, 42 = K
          */
-        c_sym_r { timeout-ms = <15>; key-positions = <41 42>; bindings = <&mo LAYER_Sym>; layers = <LAYER_Base>; slow-release; };
-        c_sym_l { timeout-ms = <15>; key-positions = <37 38>; bindings = <&mo LAYER_Sym>; layers = <LAYER_Base>; slow-release; };
+        c_sym_r { timeout-ms = <20>; key-positions = <41 42>; bindings = <&mo LAYER_Sym>; layers = <LAYER_Base>; slow-release; };
+        c_sym_l { timeout-ms = <20>; key-positions = <37 38>; bindings = <&mo LAYER_Sym>; layers = <LAYER_Base>; slow-release; };
     };
 
     /* ===== Macros ===== */
@@ -194,17 +194,37 @@
             >;
         };
 
-        /* ----- 2: Symbol layer ----- */
-
+         /* ----- 2: Symbol layer ----- */
         layer_Sym {
             display-name = "Sym";
             bindings = <
-                &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans   &trans &trans &trans   &trans &trans &trans   &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans   &trans &trans &trans   &trans &trans &trans   &trans &trans &trans &trans &trans
+                // Reihe 1
+                /* links     */ &trans &trans &trans &trans &trans   
+                /* rechts    */ &trans &trans &trans &trans &trans
+
+                // Reihe 2
+                /* links     */ &trans &trans &trans &trans &trans &trans   
+                /* rechts    */ &trans &trans &trans &trans &trans &trans
+ 
+                // Reihe 3
+                /* links     */ &trans &trans &trans &trans &trans &trans   
+                /* rechts    */ &trans &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &trans &trans
+                
+                // Reihe 4
+                /* links     */ &trans &trans &trans &trans &trans &trans   
+                /* rechts    */ &trans &kp NUMBER_4 &kp NUMBER_5 &kp NUMBER_6 &trans &trans
+                
+                // Reihe 5 + obere Daumentasten
+                /* links     */ &trans &trans &trans &trans &trans &trans   
+                /* Daumen L  */ &trans &trans &trans   
+                /* Daumen R  */ &trans &trans &trans  
+                /* rechts    */ &trans &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &trans &trans
+
+                // Reihe 6 + untere Daumentasten
+                /* links     */ &trans &trans &trans &trans &trans   
+                /* Daumen L  */ &trans &trans &trans   
+                /* Daumen R  */ &trans &kp NUMBER_0 &trans   
+                /* rechts    */ &trans &trans &trans &trans &trans
             >;
         };
 
