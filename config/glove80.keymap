@@ -19,8 +19,9 @@
 
 #define LAYER_Base    0
 #define LAYER_Nav     1
-#define LAYER_Magic   2
-/* Layer 3 und 4: Reserve fuer ZMK Studio */
+#define LAYER_Sym     2
+#define LAYER_Magic   3
+/* Layer 4 und 5: Reserve fuer ZMK Studio */
 
 
 
@@ -77,8 +78,8 @@
          * J+K halten: links tippen.  D+F halten: rechts tippen.
          * Positionen: 37 = D, 38 = F, 41 = J, 42 = K
          */
-        c_sym_r { timeout-ms = <20>; key-positions = <41 42>; bindings = <&mo LAYER_Sym>; layers = <LAYER_Base>; slow-release; };
-        c_sym_l { timeout-ms = <20>; key-positions = <37 38>; bindings = <&mo LAYER_Sym>; layers = <LAYER_Base>; slow-release; };
+        c_sym_r { timeout-ms = <15>; key-positions = <41 42>; bindings = <&mo LAYER_Sym>; layers = <LAYER_Base>; slow-release; };
+        c_sym_l { timeout-ms = <15>; key-positions = <37 38>; bindings = <&mo LAYER_Sym>; layers = <LAYER_Base>; slow-release; };
     };
 
     /* ===== Macros ===== */
@@ -193,6 +194,20 @@
             >;
         };
 
+        /* ----- 2: Symbol layer ----- */
+
+        layer_Sym {
+            display-name = "Sym";
+            bindings = <
+                &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans   &trans &trans &trans   &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans   &trans &trans &trans   &trans &trans &trans   &trans &trans &trans &trans &trans
+            >;
+        };
+
         /* ----- 2: Magic (Bluetooth, RGB, Bootloader) ----- */
         layer_Magic {
             display-name = "Magic";
@@ -228,7 +243,8 @@
             >;
         };
 
-        /* ----- 3 und 4: Reserve-Layer fuer ZMK Studio -----
+
+        /* ----- 4 und 5: Reserve-Layer fuer ZMK Studio -----
          * In normalen Builds ignoriert. In Studio aktivieren, umbenennen und belegen.
          */
         layer_Extra1 {
