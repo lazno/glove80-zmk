@@ -1,11 +1,5 @@
 /*
- * Glove80 - Version fuer normales ZMK mit ZMK Studio (nicht MoErgo)
- *
- * Unterschiede zur MoErgo-Version:
- *  - Magic-Taste ohne LED-Statusanzeige (RGB_STATUS gibt es nur bei MoErgo)
- *  - Magic + U entsperrt die Tastatur fuer ZMK Studio
- *  - Reset und Bootloader nur noch rechts im Magic-Layer (links lagen sie direkt neben der Magic-Taste)
- *  - zwei Reserve-Layer, die erst in Studio aktiviert und belegt werden
+ZMK
  */
 
 #include <behaviors.dtsi>
@@ -83,8 +77,8 @@
          * J+K halten: links tippen.  D+F halten: rechts tippen.
          * Positionen: 37 = D, 38 = F, 41 = J, 42 = K
          */
-        c_sym_r { timeout-ms = <20>; key-positions = <41 42>; bindings = <&mo LAYER_Sym>; layers = <LAYER_Base>; slow-release; };
-        c_sym_l { timeout-ms = <20>; key-positions = <37 38>; bindings = <&mo LAYER_Sym>; layers = <LAYER_Base>; slow-release; };
+        c_sym_r { timeout-ms = <30>; key-positions = <41 42>; bindings = <&mo LAYER_Sym>; layers = <LAYER_Base>; slow-release; };
+        c_sym_l { timeout-ms = <30>; key-positions = <37 38>; bindings = <&mo LAYER_Sym>; layers = <LAYER_Base>; slow-release; };
     };
 
     /* ===== Macros ===== */
@@ -135,8 +129,8 @@
                 /* rechts    */ &none &none &none &none &none 
 
                 // Reihe 2
-                /* links     */ &none &none &none &none &none &none 
-                /* rechts    */ &none &none &none &none &none &none
+                /* links     */ &none        &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &kp NUMBER_4 &kp NUMBER_5
+                /* rechts    */ &kp NUMBER_6 &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &kp NUMBER_0 &none
 
                 // Reihe 3
                 /* links     */ &kp TAB     &kp Q       &kp W       &kp E       &kp R       &kp T
@@ -155,7 +149,7 @@
                 // Reihe 6 + untere Daumentasten
                 /* links     */ &mo LAYER_Magic         &none            &none                 &none  &none  
                 /* Daumen L  */ &kp LGUI                &kp LALT         &mo LAYER_Nav 
-                /* Daumen R  */ &sym_sym                &kp BACKSPACE    &kp SPACE 
+                /* Daumen R  */ &kp BACKSPACE              &sym_sym         &kp SPACE 
                 /* rechts    */ &none                   &none            &none                 &none  &none
             >;
         };
@@ -174,12 +168,12 @@
                 /* rechts    */ &none  &none  &none  &none  &none
 
                 // Reihe 2
-                /* links     */ &none  &none  &none  &none  &none  &none
-                /* rechts    */ &none  &none  &none  &none  &none  &none
+                /* links     */ &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 
+                /* rechts    */ &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 
 
                 // Reihe 3
                 /* links     */ &none  &none  &none  &none  &none  &none 
-                /* rechts    */ &none  &none  &none  &none  &none  &none
+                /* rechts    */ &none  &none  &none  &none  &kp F11  &kp F12
 
                 // Reihe 4
                 /* links     */ &trans           &none           &kp SPACE     &kp BSPC          &kp RET  &none 
@@ -208,23 +202,23 @@
                 /* rechts    */ &trans &trans &trans &trans &trans
 
                 // Reihe 2
-                /* links     */ &trans &trans &trans &trans &trans &trans   
-                /* rechts    */ &trans &trans &trans &trans &trans &trans
+                /* links     */ &kp GRAVE &kp CARET &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp AMPERSAND &kp PERCENT
+                /* rechts    */ &kp SLASH &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &trans &trans
  
                 // Reihe 3
-                /* links     */ &trans &trans &trans &trans &trans &trans   
-                /* rechts    */ &trans &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &trans &trans
+                /* links     */ &kp APOSTROPHE &kp DOUBLE_QUOTES &kp LEFT_BRACKET &kp LEFT_BRACE &kp RIGHT_BRACE &kp RIGHT_BRACKET
+                /* rechts    */ &kp MINUS &kp NUMBER_4 &kp NUMBER_5 &kp NUMBER_6 &trans &trans
                 
                 // Reihe 4
-                /* links     */ &trans &trans &trans &trans &trans &trans   
-                /* rechts    */ &trans &kp NUMBER_4 &kp NUMBER_5 &kp NUMBER_6 &kp NUMBER_0 &trans
+                /* links     */ &kp HASH &kp EXCL &kp EQUAL &kp UNDERSCORE &kp DOLLAR &kp QUESTION
+                /* rechts    */ &kp PLUS &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &trans &trans
                 
                 // Reihe 5 + obere Daumentasten
-                /* links     */ &trans &trans &trans &trans &trans &trans   
+                /* links     */ &kp TILDE &kp LESS_THAN &kp PIPE &none &kp GREATER_THAN &kp AT_SIGN
                 /* Daumen L  */ &trans &trans &trans   
                 /* Daumen R  */ &trans &trans &trans  
-                /* rechts    */ &trans &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &trans &trans
-                
+                /* rechts    */ &kp ASTERISK &trans &kp NUMBER_0 &trans &trans &trans
+
                 // Reihe 6 + untere Daumentasten
                 /* links     */ &trans &trans &trans &trans &trans   
                 /* Daumen L  */ &trans &trans &trans   
@@ -242,8 +236,8 @@
                 /* rechts    */ &none            &none            &none            &none            &bt BT_CLR_ALL
 
                 // Reihe 2
-                /* links     */ &none            &none            &none            &none            &none            &none
-                /* rechts    */ &none            &none            &none            &none            &none            &none
+                /* links     */ &none       &none            &none            &none            &none
+                /* rechts    */ &none       &none            &none            &none            &none
 
                 // Reihe 3
                 /* links     */ &none            &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG
