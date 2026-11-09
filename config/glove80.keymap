@@ -130,7 +130,7 @@ ZMK
 
                 // Reihe 2
                 /* links     */ &none        &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &kp NUMBER_4 &kp NUMBER_5
-                /* rechts    */ &kp NUMBER_6 &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &kp NUMBER_0 &none
+                /* rechts    */ &kp NUMBER_6 &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &kp NUMBER_0 &kp F12
 
                 // Reihe 3
                 /* links     */ &kp TAB     &kp Q       &kp W       &kp E       &kp R       &kp T
@@ -168,12 +168,12 @@ ZMK
                 /* rechts    */ &none  &none  &none  &none  &none
 
                 // Reihe 2
-                /* links     */ &none &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 
-                /* rechts    */ &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11
+                /* links     */ &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6
+                /* rechts    */ &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
 
                 // Reihe 3
                 /* links     */ &none  &none  &none  &none  &none  &none 
-                /* rechts    */ &none  &none  &none  &none  &none  &kp F12
+                /* rechts    */ &none  &none  &none  &none  &none  &none
 
                 // Reihe 4
                 /* links     */ &trans           &none           &kp SPACE     &kp BSPC          &kp RET  &none 
