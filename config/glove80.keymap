@@ -129,7 +129,7 @@ ZMK
                 /* rechts    */ &none &none &none &none &none 
 
                 // Reihe 2
-                /* links     */ &none        &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &kp NUMBER_4 &kp NUMBER_5
+                /* links     */ &kp GRAVE    &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &kp NUMBER_4 &kp NUMBER_5
                 /* rechts    */ &kp NUMBER_6 &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &kp NUMBER_0 &kp F12
 
                 // Reihe 3
@@ -176,7 +176,7 @@ ZMK
                 /* rechts    */ &none  &none  &none  &none  &none  &none
 
                 // Reihe 4
-                /* links     */ &trans           &none           &kp SPACE     &kp BSPC          &kp RET  &none 
+                /* links     */ &trans          &none           &kp SPACE     &kp BSPC          &kp RET  &none 
                 /* rechts    */ &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW   &none    &trans
 
                 // Reihe 5 + obere Daumentasten
@@ -202,22 +202,22 @@ ZMK
                 /* rechts    */ &trans &trans &trans &trans &trans
 
                 // Reihe 2
-                /* links     */ &kp GRAVE &kp CARET &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp AMPERSAND &kp PERCENT
-                /* rechts    */ &kp SLASH &kp NUMBER_7 &kp NUMBER_8 &kp NUMBER_9 &trans &trans
+                /* links     */ &kp GRAVE &kp CARET    &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp AMPERSAND &kp PERCENT
+                /* rechts    */ &kp SLASH &kp NUMBER_7 &kp NUMBER_8         &kp NUMBER_9          &trans        &trans
  
                 // Reihe 3
                 /* links     */ &kp APOSTROPHE &kp DOUBLE_QUOTES &kp LEFT_BRACKET &kp LEFT_BRACE &kp RIGHT_BRACE &kp RIGHT_BRACKET
-                /* rechts    */ &kp MINUS &kp NUMBER_4 &kp NUMBER_5 &kp NUMBER_6 &trans &trans
+                /* rechts    */ &kp MINUS      &kp NUMBER_4      &kp NUMBER_5     &kp NUMBER_6   &trans          &trans
                 
                 // Reihe 4
-                /* links     */ &kp HASH &kp EXCL &kp EQUAL &kp UNDERSCORE &kp DOLLAR &kp QUESTION
-                /* rechts    */ &kp PLUS &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &trans &trans
+                /* links     */ &kp HASH &kp EXCL     &kp EQUAL    &kp UNDERSCORE &kp DOLLAR &kp QUESTION
+                /* rechts    */ &kp PLUS &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3   &trans     &trans
                 
                 // Reihe 5 + obere Daumentasten
-                /* links     */ &kp TILDE &kp LESS_THAN &kp PIPE &none &kp GREATER_THAN &kp AT_SIGN
+                /* links     */ &kp TILDE    &kp LESS_THAN &kp PIPE     &none  &kp GREATER_THAN &kp AT_SIGN
                 /* Daumen L  */ &trans &trans &trans   
                 /* Daumen R  */ &trans &trans &trans  
-                /* rechts    */ &kp ASTERISK &trans &kp NUMBER_0 &trans &trans &trans
+                /* rechts    */ &kp ASTERISK &trans        &kp NUMBER_0 &trans &trans           &trans
 
                 // Reihe 6 + untere Daumentasten
                 /* links     */ &trans &trans &trans &trans &trans   
