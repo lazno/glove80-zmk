@@ -180,7 +180,7 @@ ZMK
                 /* rechts    */ &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW   &none    &trans
 
                 // Reihe 5 + obere Daumentasten
-                /* links     */ &trans  &none  &none  &none  &none  &none
+                /* links     */ &kp LSHFT  &none  &none  &kp LGUI  &kp LALT  &none
                 /* Daumen L  */ &none   &none  &none
                 /* Daumen R  */ &none   &none  &none
                 /* rechts    */ &none   &none  &none  &none  &none  &trans 
@@ -202,22 +202,22 @@ ZMK
                 /* rechts    */ &trans &trans &trans &trans &trans
 
                 // Reihe 2
-                /* links     */ &kp GRAVE &kp CARET    &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp AMPERSAND &kp PERCENT
-                /* rechts    */ &kp SLASH &kp NUMBER_7 &kp NUMBER_8         &kp NUMBER_9          &trans        &trans
+                /* links     */ &kp GRAVE &kp CARET    &kp UNDERSCORE       &kp AMPERSAND     &kp DOLLAR &kp PERCENT
+                /* rechts    */ &kp SLASH &kp NUMBER_7 &kp NUMBER_8         &kp NUMBER_9      &trans        &trans
  
                 // Reihe 3
                 /* links     */ &kp APOSTROPHE &kp DOUBLE_QUOTES &kp LEFT_BRACKET &kp LEFT_BRACE &kp RIGHT_BRACE &kp RIGHT_BRACKET
                 /* rechts    */ &kp MINUS      &kp NUMBER_4      &kp NUMBER_5     &kp NUMBER_6   &trans          &trans
                 
                 // Reihe 4
-                /* links     */ &kp HASH &kp EXCL     &kp EQUAL    &kp UNDERSCORE &kp DOLLAR &kp QUESTION
-                /* rechts    */ &kp PLUS &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3   &trans     &trans
+                /* links     */ &kp HASH &kp EXCL     &kp EQUAL    &kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp PIPE
+                /* rechts    */ &kp PLUS &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3         &trans                &trans
                 
                 // Reihe 5 + obere Daumentasten
-                /* links     */ &kp TILDE    &kp LESS_THAN &kp PIPE     &none  &kp GREATER_THAN &kp AT_SIGN
+                /* links     */ &none        &none     &none        &kp LESS_THAN   &kp GREATER_THAN &kp AT_SIGN
                 /* Daumen L  */ &trans &trans &trans   
                 /* Daumen R  */ &trans &trans &trans  
-                /* rechts    */ &kp ASTERISK &trans        &kp NUMBER_0 &trans &trans           &trans
+                /* rechts    */ &kp ASTERISK &trans    &kp NUMBER_0 &trans          &trans           &trans
 
                 // Reihe 6 + untere Daumentasten
                 /* links     */ &trans &trans &trans &trans &trans   
