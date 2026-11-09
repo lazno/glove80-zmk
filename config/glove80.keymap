@@ -172,7 +172,7 @@ ZMK
                 /* rechts    */ &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
 
                 // Reihe 3
-                /* links     */ &none  &none  &none  &none  &none  &none 
+                /* links     */ &none  &none  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW
                 /* rechts    */ &none  &none  &none  &none  &none  &none
 
                 // Reihe 4
