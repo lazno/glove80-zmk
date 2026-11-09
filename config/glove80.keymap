@@ -149,7 +149,7 @@ ZMK
                 // Reihe 6 + untere Daumentasten
                 /* links     */ &mo LAYER_Magic         &none            &none                 &none  &none  
                 /* Daumen L  */ &kp LGUI                &kp LALT         &mo LAYER_Nav 
-                /* Daumen R  */ &kp BACKSPACE              &sym_sym         &kp SPACE 
+                /* Daumen R  */ &kp BACKSPACE           &sym_sym         &kp SPACE 
                 /* rechts    */ &none                   &none            &none                 &none  &none
             >;
         };
@@ -236,8 +236,8 @@ ZMK
                 /* rechts    */ &none            &none            &none            &none            &bt BT_CLR_ALL
 
                 // Reihe 2
-                /* links     */ &none       &none            &none            &none            &none
-                /* rechts    */ &none       &none            &none            &none            &none
+                /* links     */ &none       &none            &none            &none            &none &none
+                /* rechts    */ &none       &none            &none            &none            &none &none
 
                 // Reihe 3
                 /* links     */ &none            &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG
